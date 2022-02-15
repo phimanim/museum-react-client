@@ -3,7 +3,7 @@ import { createExhibition, uploadImage } from "../../api";
 import { useHistory } from "react-router-dom";
 
 function NewExhibition() {
-  const [state, setState] = React.useState({ name: "", description: "", artist: "", curator: "", begginingDate:"", endDate: ""#});
+  const [state, setState] = React.useState({ name: "", description: "", artist: "", curator: "", begginingDate:"", endDate: ""});
   const [file, setFile] = React.useState();
   const history = useHistory();
 
