@@ -13,7 +13,7 @@ function Exhibitions() {
       <h1>Exhibitions</h1>
       {data?.map((exhibition) => {
         return (
-          <div key={exhibition.title}>
+          <div key={exhibition._id}>
             <img src={exhibition.imageUrl} />
             <Link to={`/exhibitions/${exhibition._id}`}>Details</Link>
             <hr />

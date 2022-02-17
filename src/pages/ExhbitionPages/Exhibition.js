@@ -4,7 +4,8 @@ import { deleteExhibition } from "../../api";
 import { useFetch } from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import { Suspense } from "../../components";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+
 
 function Exhibition() {
   const { exhibitionId } = useParams();
@@ -28,7 +29,7 @@ const history = useHistory();
         <p>Curator: {data?.Curator}</p>
         <p>Beggining Date: {data?.begginingDate}</p>
         <p>End Date: {data?.endDate}</p>
-        <p>Museum: {data?.museum?.museum[0]}</p>
+        <Link to={`/museums/${data?.museum._id}`}>Museum: {data?.museum.name}</Link>
         <button onClick={handleDelete}>
           Delete
         </button>

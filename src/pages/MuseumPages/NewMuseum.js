@@ -15,13 +15,15 @@ function NewMuseum() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("imageUrl", file, file.title);
+    formData.append("imageUrl", file);
     const { data: imageData } = await uploadImage(formData);
     console.log("imageData", imageData);
+
     const { data } = await createMuseum({
       ...state,
       imageUrl: imageData.imageUrl,
     });
+
     console.log("data", data);
     history.push("/museums");
   };
