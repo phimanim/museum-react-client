@@ -56,11 +56,9 @@ function AuthProvider({ children }) {
 
   const handleIsLoggedIn = async () => {
     try {
-      if (!auth.user) {
         const { data } = await isLoggedIn();
         setAuth({ user: data });
         saveSessionUser(data);
-      }
     } catch (err) {
       setAuth({ user: null });
     }
