@@ -13,15 +13,20 @@ function NewMuseum() {
   const history = useHistory();
 
   const handleSubmit = async (event) => {
+    let imageUrl;
+
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("imageUrl", file);
-    const { data: imageData } = await uploadImage(formData);
-    console.log("imageData", imageData);
+    console.log("file:", file);
+    if (file) {
+      const formData = new FormData();
+      formData.append("imageUrl", file);
+      const { data } = await uploadImage(formData);
+      imageUrl = data.imageUrl;
+    }
 
     const { data } = await createMuseum({
       ...state,
-      imageUrl: imageData.imageUrl,
+      imageUrl,
     });
 
     console.log("data", data);
@@ -52,17 +57,11 @@ function NewMuseum() {
       <label htmlFor="Coordinates">coordinates</label>
       <input
         name="coordinates"
-        required
         onChange={handleChange}
         value={state.coordinates}
       />
       <label htmlFor="phone">Phone</label>
-      <input
-        name="phone"
-        required
-        onChange={handleChange}
-        value={state.phone}
-      />
+      <input name="phone" onChange={handleChange} value={state.phone} />
       <input type="file" name="imageUrl" onChange={handleFileChange} />
       <button type="submit">Create Museum</button>
     </form>

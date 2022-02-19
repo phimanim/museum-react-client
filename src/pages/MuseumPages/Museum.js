@@ -2,7 +2,7 @@ import React from "react";
 import { getMuseumById } from "../../api";
 import { deleteMuseum } from "../../api";
 import { useFetch } from "../../hooks/useFetch";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Suspense } from "../../components";
 import { useHistory } from "react-router-dom";
 
@@ -12,6 +12,7 @@ function Museum() {
     () => getMuseumById(museumId),
     [museumId]
   );
+  
 const history = useHistory();
  const handleDelete = () => {
         deleteMuseum(museumId)
@@ -26,6 +27,8 @@ const history = useHistory();
         <p>Address: {data?.address}</p>
         <p>Coordinates: {data?.coordinates}</p>
         <p>Phone: {data?.Phone}</p>
+        <Link to={`/museums/${data?._id}/update`}>Update informations</Link>
+
         <button onClick={handleDelete}>
           Delete
         </button>

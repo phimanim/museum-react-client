@@ -13,9 +13,9 @@ function Museums() {
       <h1>Museums</h1>
       {data?.map((museum) => {
         return (
-          <div key={museum.title}>
+          <div key={museum._id}>
             <img src={museum.imageUrl} />
-            <Link to={`/museums/${museum._id}`}>Details</Link>
+            <Link to={`/museums/${museum._id}`}>{museum.name}</Link>
             <hr />
           </div>
            

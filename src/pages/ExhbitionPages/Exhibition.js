@@ -29,7 +29,8 @@ const history = useHistory();
         <p>Curator: {data?.Curator}</p>
         <p>Beggining Date: {data?.begginingDate}</p>
         <p>End Date: {data?.endDate}</p>
-        <Link to={`/museums/${data?.museum._id}`}>Museum: {data?.museum.name}</Link>
+        {data?.museum && <Link to={`/museums/${data?.museum._id}`}>Museum: {data?.museum.name}</Link>}
+       
         <button onClick={handleDelete}>
           Delete
         </button>
