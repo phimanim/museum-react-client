@@ -14,6 +14,7 @@ function Exhibitions() {
       {data?.map((exhibition) => {
         return (
           <div key={exhibition._id}>
+            <p>{exhibition.name}</p>
             <img src={exhibition.imageUrl} />
             <Link to={`/exhibitions/${exhibition._id}`}>Details</Link>
             <hr />

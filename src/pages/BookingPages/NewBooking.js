@@ -1,9 +1,15 @@
 import React from "react";
-import { createBooking } from "../../api";
+import { createBooking, getExhibitionById} from "../../api";
+import { useParams } from "react-router-dom";
+import { useFetch } from "../../hooks/useFetch";
 
 function NewBooking() {
   const [state, setState] = React.useState({ exhibition: "", date: "", hour: "" });
-
+  const { exhibitionId } = useParams();
+  const { data } = useFetch(
+    () => getExhibitionById(exhibitionId),
+    [exhibitionId]
+  );
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { data } = await createBooking(state);
@@ -17,15 +23,23 @@ function NewBooking() {
 
   return (
     <form onSubmit={handleSubmit}>
-        {/* I have to pre fill the exhibition with t */}
+       <label htmlFor="exhibition">Exhibition</label>
+        <input
+          name="exhibition"
+          onChange={handleChange}
+          value={state.exhibition}
+          placeholder={data?.name}
+        />
       <label htmlFor="date">Date</label>
       <input
-        name="date"
-        type="date"
-        required
-        onChange={handleChange}
-        value={state.title}
-      />
+          name="date"
+          type="date"
+          required
+          onChange={handleChange}
+          value={state.date}
+          min={data?.begginingDate}
+          max={data?.endDate}
+        />
       <label htmlFor="hour">hour</label>
       <input
       type="time"

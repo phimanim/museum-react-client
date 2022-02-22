@@ -1,5 +1,5 @@
 import React from "react";
-import { getMuseums } from "../../api";
+import { getMuseums} from "../../api";
 import { useFetch } from "../../hooks/useFetch";
 import { Suspense } from "../../components";
 import { Link } from "react-router-dom";
@@ -26,6 +26,7 @@ function Museums() {
         </Link>
     </div>
     </Suspense>
+
   );
 }
 

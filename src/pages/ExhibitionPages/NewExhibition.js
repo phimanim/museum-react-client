@@ -10,7 +10,6 @@ import { useFetch } from "../../hooks/useFetch";
 function NewExhibition() {
   const { data, error, loading } = useFetch(getMuseums);
 
-
   const [state, setState] = React.useState({
     name: "",
     description: "",
@@ -24,15 +23,16 @@ function NewExhibition() {
   const history = useHistory();
 
   const handleSubmit = async (event) => {
-let imageUrl;
+  let imageUrl;
 
     event.preventDefault();
-    console.log("file:", file)
+
     if (file){
       const formData = new FormData();
       formData.append("imageUrl", file);
       const  { data }  = await uploadImage(formData);
       imageUrl = data.imageUrl
+      
     }
 
     const { data } = await createExhibition({
@@ -79,7 +79,6 @@ let imageUrl;
         <input
           name="begginingDate"
           type="date"
-          required
           onChange={handleChange}
           value={state.begginingDate}
           min="2021-02-15"
@@ -88,22 +87,12 @@ let imageUrl;
         <label htmlFor="endDate">End date</label>
         <input
           name="endDate"
-          required
           type="date"
           onChange={handleChange}
           value={state.endDate}
           min="2022-02-15"
           max="2024-12-31"
         />
-        {/* <label htmlFor="museum">Museum</label>
-
-       this as to be an input search field for existing museum:
-      <input
-        name="museum"
-        onChange={handleChange}
-        value={state.museum}
-      />
-      <Search/> */}
       <label htmlFor="museum">Museum</label>
         <select
           name="museum"

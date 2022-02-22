@@ -12,13 +12,11 @@ function Museum() {
     () => getMuseumById(museumId),
     [museumId]
   );
-  
 const history = useHistory();
  const handleDelete = () => {
         deleteMuseum(museumId)
         history.push("/museums");
  }
-
   return (
     <div>
       <Suspense error={error} loading={loading} noData={!data && !loading}>
@@ -27,12 +25,18 @@ const history = useHistory();
         <p>Address: {data?.address}</p>
         <p>Coordinates: {data?.coordinates}</p>
         <p>Phone: {data?.Phone}</p>
+        {data?.exhibition?.map((e) => (
+            <p value={e._id} key={e._id}>
+              {e}
+            </p>
+          ))}
         <Link to={`/museums/${data?._id}/update`}>Update informations</Link>
 
         <button onClick={handleDelete}>
           Delete
         </button>
       </Suspense>
+    
     </div>
   );
 }

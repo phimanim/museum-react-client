@@ -31,6 +31,7 @@ const history = useHistory();
         <p>End Date: {data?.endDate}</p>
         {data?.museum && <Link to={`/museums/${data?.museum._id}`}>Museum: {data?.museum.name}</Link>}
        
+        <Link to={`/exhibitions/${data?._id}/booking`}>Book your ticket</Link>
         <button onClick={handleDelete}>
           Delete
         </button>

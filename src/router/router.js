@@ -6,7 +6,7 @@ import {
   NewExhibition,
   Exhibitions,
   Exhibition,
-} from "../pages/ExhbitionPages";
+} from "../pages/ExhibitionPages";
 // Museums
 import { Museum, Museums, NewMuseum, MuseumUpdate } from "../pages/MuseumPages";
 // Bookings
@@ -24,17 +24,16 @@ function AppRouter() {
       <GuestRoute path="/signup" exact>
         <Auth />
       </GuestRoute>
-      <GuestRoute exact path="/">
-        <Home />
-      </GuestRoute>
+      <Home exact path="/" />
+        
       {/* profile routes */}
       <AppRoute exact path="/profile">
         <Profile />
       </AppRoute>
-      <AppRoute exact path="/new-booking">
+      <AppRoute exact path="exhibitions/:exhibitionId/booking">
         <NewBooking />
       </AppRoute>
-      <AppRoute exact path="/bookings/:bookingId">
+      <AppRoute exact path="/profile/:bookingId">
         <Booking />
       </AppRoute>
       {/* museums routes */}
