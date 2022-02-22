@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 
 function Museums() {
     const { data, loading, error } = useFetch(getMuseums);
-
+    
     return (
-      <Suspense noData={!data && !loading} error={error} loading={loading}>
+      <div>
+        <Suspense noData={!data && !loading} error={error} loading={loading}>
         <div>
       <h1>Museums</h1>
       {data?.map((museum) => {
@@ -26,6 +27,10 @@ function Museums() {
         </Link>
     </div>
     </Suspense>
+    
+      </div>
+      
+    
 
   );
 }

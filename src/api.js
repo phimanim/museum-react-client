@@ -36,6 +36,9 @@ export function updateMuseum(museumId, museum) {
 export function deleteMuseum(museumId, museum) {
   return api.delete(`/museums/${museumId}`, museum);
 }
+export function addExhibitions(museumId) {
+  return api.get(`/museums/exhibitions/${museumId}`);
+}
 // exhibitions
 export function getExhibitions() {
   return api.get("/exhibitions");

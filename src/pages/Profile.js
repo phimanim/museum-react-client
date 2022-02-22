@@ -23,7 +23,6 @@ function Home() {
            
         );
       })}
-      <p>{user?.email}</p>
       </ul>
       <h3>Saved Exhibitions</h3>
       <button className="NavbarButton" onClick={handleLogout}>Logout</button>

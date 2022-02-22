@@ -23,14 +23,14 @@ const history = useHistory();
     <div>
       <Suspense error={error} loading={loading} noData={!data && !loading}>
         <h2>{data?.name}</h2>
+
         {data?.imageUrl && <img src={data?.imageUrl} />}
-        <p>Description: {data?.Description}</p>
-        <p>Artist: {data?.Artist}</p>
-        <p>Curator: {data?.Curator}</p>
-        <p>Beggining Date: {data?.begginingDate}</p>
-        <p>End Date: {data?.endDate}</p>
+        {data?.description &&  <p>Description: {data?.description}</p>}
+        {data?.artist && <p>Artist: {data?.artist}</p>}
+        {data?.curator && <p>Curator: {data?.curator}</p>}
+        {data?.begginingDate && <p>Beggining Date: {data?.begginingDate}</p>}
+        {data?.endDate && <p>End Date: {data?.endDate}</p>}
         {data?.museum && <Link to={`/museums/${data?.museum._id}`}>Museum: {data?.museum.name}</Link>}
-       
         <Link to={`/exhibitions/${data?._id}/booking`}>Book your ticket</Link>
         <button onClick={handleDelete}>
           Delete

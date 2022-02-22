@@ -31,9 +31,7 @@ function MuseumUpdate() {
   const handleSubmit = async (event) => {
     
     event.preventDefault();
-    const { data } = await updateMuseum({
-      ...state,
-    });
+    const { data } = await updateMuseum(museumId, state);
     console.log("data", data);
     history.push("/museums");
   };
