@@ -25,7 +25,7 @@ const history = useHistory();
         <h2>{data?.name}</h2>
 
         {data?.imageUrl && <img src={data?.imageUrl} />}
-        {data?.description &&  <p>Description: {data?.description}</p>}
+        {data?.description &&  <p>{data?.description}</p>}
         {data?.artist && <p>Artist: {data?.artist}</p>}
         {data?.curator && <p>Curator: {data?.curator}</p>}
         {data?.begginingDate && <p>Beggining Date: {data?.begginingDate}</p>}

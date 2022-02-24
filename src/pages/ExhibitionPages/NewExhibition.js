@@ -100,6 +100,7 @@ function NewExhibition() {
           placeholder="Pick a museum"
           value={state.museum}
         >
+           <option value="">--Please choose an option--</option>
           <Suspense error={error} loading={loading} noData={!data && !loading}>
           {data?.map((e) => (
             <option value={e._id} key={e._id}>

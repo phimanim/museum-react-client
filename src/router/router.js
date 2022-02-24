@@ -30,7 +30,7 @@ function AppRouter() {
       <AppRoute exact path="/profile">
         <Profile />
       </AppRoute>
-      <AppRoute exact path="exhibitions/:exhibitionId/booking">
+      <AppRoute exact path="/exhibitions/:exhibitionId/booking">
         <NewBooking />
       </AppRoute>
       <AppRoute exact path="/profile/:bookingId">

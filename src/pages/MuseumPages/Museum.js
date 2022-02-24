@@ -40,11 +40,10 @@ function Museum() {
         <h2>{data?.name}</h2>
         {data?.imageUrl && <img src={data?.imageUrl} />}
         {data?.address && <p>Address: {data?.address}</p>}
-        {data?.coordinates && <p>Coordinates: {data?.coordinates}</p>}
-        {data?.phone && <p>Phone: {data?.phone}</p>}
+        {data?.phone && <p>Phone: 0{data?.phone}</p>}
         {exhibition?.map((e) => (
           <p value={e._id} key={e._id}>
-            {e.name}
+            <Link to={`/exhibitions/${e?._id}`}>{e.name}</Link>
             <img src={e.imageUrl} />
           </p>
         ))}

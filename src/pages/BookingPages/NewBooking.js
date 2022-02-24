@@ -1,54 +1,49 @@
 import React from "react";
-import { createBooking, getExhibitionById} from "../../api";
-import { useParams } from "react-router-dom";
+import { createBooking, getExhibitionById } from "../../api";
+import { useParams, useHistory } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 
 function NewBooking() {
-  const [state, setState] = React.useState({ exhibition: "", date: "", hour: "" });
   const { exhibitionId } = useParams();
+  console.log(exhibitionId);
+
+  const [state, setState] = React.useState({
+    exhibition: exhibitionId,
+    date: ""
+  });
+  const history = useHistory();
+
   const { data } = useFetch(
     () => getExhibitionById(exhibitionId),
     [exhibitionId]
   );
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const { data } = await createBooking(state);
-    console.log("data", data);
-  };
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setState({ ...state, [name]: value });
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { data } = await createBooking(state);
+    console.log("data", data);
+    history.push("/profile");
+  };
+
   return (
     <form onSubmit={handleSubmit}>
-       <label htmlFor="exhibition">Exhibition</label>
-        <input
-          name="exhibition"
-          onChange={handleChange}
-          value={state.exhibition}
-          placeholder={data?.name}
-        />
+      <h1>Booking</h1>
+      <h2>{data?.name}</h2>
       <label htmlFor="date">Date</label>
-      <input
+        <input
           name="date"
-          type="date"
+          type="datetime-local"
           required
           onChange={handleChange}
           value={state.date}
           min={data?.begginingDate}
-          max={data?.endDate}
+        max={data?.endDate}
         />
-      <label htmlFor="hour">hour</label>
-      <input
-      type="time"
-        name="hour"
-        min="09:00" max="18:00"
-        required
-        onChange={handleChange}
-        value={state.hour}
-      />
       <button type="submit">Create Booking</button>
     </form>
   );
