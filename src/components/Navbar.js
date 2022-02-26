@@ -18,6 +18,9 @@ function Navbar() {
         <Link className="NavbarLink" to="/profile">
          Profile
         </Link>
+        <Link className="NavbarLink" to="/map">
+         Museum Map
+        </Link>
        
       </div>
     );

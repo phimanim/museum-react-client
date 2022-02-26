@@ -1,6 +1,6 @@
 import React from "react";
 import { updateExhibition, getExhibitionById } from "../../api";
-//import { getMuseums } from "../../api";
+import { getMuseums } from "../../api";
 import { useParams, useHistory } from "react-router-dom";
 import { Suspense } from "../../components";
 import { useFetch } from "../../hooks/useFetch";
@@ -20,6 +20,7 @@ function ExhibitionUpdate() {
     museum: ""
   });
   const history = useHistory();
+  const { data, loading, error } = useFetch(getMuseums);
 
   async function getExhibitionData() {
     const { data } = await getExhibitionById(exhibitionId);
@@ -81,7 +82,7 @@ function ExhibitionUpdate() {
           min="2021-02-15"
           max="2024-12-31"
         />
-        {/* <label htmlFor="museum">Museum</label>
+        <label htmlFor="museum">Museum</label>
         <select
           name="museum"
           onChange={handleChange}
@@ -89,15 +90,15 @@ function ExhibitionUpdate() {
           value={state.museum}
         >
            <option value="">--Please choose an option--</option>
-          <Suspense error={museumError} loading={museumLoading} noData={!museums && !museumLoading}>
-          {museums?.map((e) => (
+          <Suspense error={error} loading={loading} noData={!data && !loading}>
+          {data?.map((e) => (
             <option value={e?._id} key={e?._id}>
               {e.name}
             </option>
           ))}
           </Suspense>
           
-        </select> */}
+        </select>
         <button type="submit">Update exhibition</button>
       </form>
     </div>

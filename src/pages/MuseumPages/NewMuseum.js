@@ -6,7 +6,8 @@ function NewMuseum() {
   const [state, setState] = React.useState({
     name: "",
     address: "",
-    coordinates: "",
+    latitude: "",
+    longitude: "",
     phone: "",
   });
   const [file, setFile] = React.useState();
@@ -54,12 +55,18 @@ function NewMuseum() {
         onChange={handleChange}
         value={state.address}
       />
-      <label htmlFor="Coordinates">coordinates</label>
-      <input
-        name="coordinates"
-        onChange={handleChange}
-        value={state.coordinates}
-      />
+      <label htmlFor="latitude">Latitude</label>
+        <input
+          name="latitude"
+          onChange={handleChange}
+          value={state.latitude}
+        />
+        <label htmlFor="longitude">Longitude</label>
+        <input
+          name="longitude"
+          onChange={handleChange}
+          value={state.longitude}
+        />
       <label htmlFor="phone">Phone</label>
       <input name="phone" onChange={handleChange} value={state.phone} />
       <input type="file" name="imageUrl" onChange={handleFileChange} />

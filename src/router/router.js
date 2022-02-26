@@ -12,8 +12,7 @@ import {
 import { Museum, Museums, NewMuseum, MuseumUpdate } from "../pages/MuseumPages";
 // Bookings
 import { Booking, NewBooking } from "../pages/BookingPages";
-import { Profile } from "../pages";
-import { Home } from "../pages";
+import { Profile, Home, MapView } from "../pages";
 import { AppRoute, GuestRoute } from ".";
 
 function AppRouter() {
@@ -26,7 +25,10 @@ function AppRouter() {
         <Auth />
       </GuestRoute>
       <Home exact path="/" />
-        
+
+      <AppRoute exact path="/map">
+        <MapView />
+      </AppRoute>
       {/* profile routes */}
       <AppRoute exact path="/profile">
         <Profile />

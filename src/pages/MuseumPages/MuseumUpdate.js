@@ -8,9 +8,9 @@ function MuseumUpdate() {
   const [state, setState] = React.useState({
     name: "",
     address: "",
-    coordinates: "",
+    latitude: "",
+    longitude: "",
     phone: "",
-
   });
   const history = useHistory();
 
@@ -45,13 +45,18 @@ function MuseumUpdate() {
         <label htmlFor="address">address</label>
         <input name="address" onChange={handleChange} value={state.address} />
 
-        <label htmlFor="Coordinates">coordinates</label>
+        <label htmlFor="latitude">Latitude</label>
         <input
-          name="coordinates"
+          name="latitude"
           onChange={handleChange}
-          value={state.coordinates}
+          value={state.latitude}
         />
-
+        <label htmlFor="longitude">Longitude</label>
+        <input
+          name="longitude"
+          onChange={handleChange}
+          value={state.longitude}
+        />
         <label htmlFor="phone">Phone</label>
         <input name="phone" onChange={handleChange} value={state.phone} />
 

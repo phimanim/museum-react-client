@@ -9,6 +9,7 @@ function Museums() {
     
     return (
       <div>
+        <Link to={`/map`}>Map</Link>
         <Suspense noData={!data && !loading} error={error} loading={loading}>
         <div>
       <h1>Museums</h1>
