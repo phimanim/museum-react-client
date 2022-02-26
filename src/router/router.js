@@ -6,6 +6,7 @@ import {
   NewExhibition,
   Exhibitions,
   Exhibition,
+  ExhibitionUpdate
 } from "../pages/ExhibitionPages";
 // Museums
 import { Museum, Museums, NewMuseum, MuseumUpdate } from "../pages/MuseumPages";
@@ -58,6 +59,9 @@ function AppRouter() {
       </AppRoute>
       <AppRoute exact path="/exhibitions/:exhibitionId">
         <Exhibition />
+      </AppRoute>
+      <AppRoute exact path="/exhibitions/:exhibitionId/update">
+        <ExhibitionUpdate />
       </AppRoute>
     </Switch>
   );

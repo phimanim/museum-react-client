@@ -13,18 +13,6 @@ function Home() {
       <h2>Profile</h2>
       <p>Mail: {user?.email}</p>
       <h3>My bookings</h3>
-      {/* <ul>
-      {data?.map((booking) => {
-        return (
-          <div key={booking?.exhibition.name}>
-            <img src={booking?.exhibition.imageUrl} />
-            <Link to={`/profile/${booking?._id}`}>Details</Link>
-            <hr />
-          </div>
-           
-        );
-      })}
-      </ul> */}
       <Bookings/>
       <h3>Saved Exhibitions</h3>
       <button className="NavbarButton" onClick={handleLogout}>Logout</button>

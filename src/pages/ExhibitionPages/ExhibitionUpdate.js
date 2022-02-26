@@ -1,15 +1,15 @@
 import React from "react";
-import { createExhibition, uploadImage } from "../../api";
-import { useHistory } from "react-router-dom";
-//import {Search} from "../../components";
+import { updateExhibition, getExhibitionById } from "../../api";
+//import { getMuseums } from "../../api";
+import { useParams, useHistory } from "react-router-dom";
 import { Suspense } from "../../components";
-import { getMuseums } from "../../api";
 import { useFetch } from "../../hooks/useFetch";
 
+function ExhibitionUpdate() {
+  const { exhibitionId } = useParams();
+//   const { museums, museumError, museumLoading } = useFetch(getMuseums);
+//   console.log("museums:", museums);
 
-function NewExhibition() {
-  const { data, error, loading } = useFetch(getMuseums);
-console.log("museums:", data)
   const [state, setState] = React.useState({
     name: "",
     description: "",
@@ -19,58 +19,46 @@ console.log("museums:", data)
     endDate: "",
     museum: ""
   });
-  const [file, setFile] = React.useState();
   const history = useHistory();
 
-  const handleSubmit = async (event) => {
-  let imageUrl;
+  async function getExhibitionData() {
+    const { data } = await getExhibitionById(exhibitionId);
+    setState(data);
+    console.log("id exhibition data", data);
+  }
 
-    event.preventDefault();
+  React.useEffect(() => {
+    getExhibitionData();
+  }, []);
 
-    if (file){
-      const formData = new FormData();
-      formData.append("imageUrl", file);
-      const  { data }  = await uploadImage(formData);
-      imageUrl = data.imageUrl
-      
-    }
-
-    const { data } = await createExhibition({
-      ...state,
-      imageUrl,
-    });
-    console.log("data", data);
-    history.push("/exhibitions");
-  };
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setState({ ...state, [name]: value });
   };
 
-  const handleFileChange = ({ target }) => {
-    const [file] = target.files;
-    setFile(file);
+  
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { data } = await updateExhibition(exhibitionId, state);
+    console.log("data", data);
+    history.push("/exhibitions");
   };
 
   return (
     <div>
-      <h1>Add a new exhibition</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Exhibition</label>
-        <input
-          name="name"
-          required
-          onChange={handleChange}
-          value={state.name}
-        />
+        <label htmlFor="name">exhibition</label>
+        <input name="name" onChange={handleChange} value={state.name} />
+
         <label htmlFor="description">description</label>
         <input
           name="description"
-          required
           onChange={handleChange}
           value={state.description}
         />
+
         <label htmlFor="artist">artist</label>
         <input name="artist" onChange={handleChange} value={state.artist} />
         <label htmlFor="curator">curator</label>
@@ -90,10 +78,10 @@ console.log("museums:", data)
           type="date"
           onChange={handleChange}
           value={state.endDate}
-          min="2022-02-15"
+          min="2021-02-15"
           max="2024-12-31"
         />
-      <label htmlFor="museum">Museum</label>
+        {/* <label htmlFor="museum">Museum</label>
         <select
           name="museum"
           onChange={handleChange}
@@ -101,20 +89,19 @@ console.log("museums:", data)
           value={state.museum}
         >
            <option value="">--Please choose an option--</option>
-          <Suspense error={error} loading={loading} noData={!data && !loading}>
-          {data?.map((e) => (
-            <option value={e._id} key={e._id}>
+          <Suspense error={museumError} loading={museumLoading} noData={!museums && !museumLoading}>
+          {museums?.map((e) => (
+            <option value={e?._id} key={e?._id}>
               {e.name}
             </option>
           ))}
           </Suspense>
           
-        </select>
-        <input type="file" name="imageUrl" onChange={handleFileChange} />
-        <button type="submit">Create exhibition</button>
+        </select> */}
+        <button type="submit">Update exhibition</button>
       </form>
     </div>
   );
 }
 
-export default NewExhibition;
+export default ExhibitionUpdate;

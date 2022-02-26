@@ -10,6 +10,7 @@ function MuseumUpdate() {
     address: "",
     coordinates: "",
     phone: "",
+
   });
   const history = useHistory();
 

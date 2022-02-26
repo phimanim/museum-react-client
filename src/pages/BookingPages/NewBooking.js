@@ -5,18 +5,19 @@ import { useFetch } from "../../hooks/useFetch";
 
 function NewBooking() {
   const { exhibitionId } = useParams();
-  console.log(exhibitionId);
-
-  const [state, setState] = React.useState({
-    exhibition: exhibitionId,
-    date: ""
-  });
   const history = useHistory();
 
   const { data } = useFetch(
     () => getExhibitionById(exhibitionId),
     [exhibitionId]
   );
+
+  const [state, setState] = React.useState({
+    exhibition: exhibitionId,
+    date: ""
+  });
+
+console.log(state)
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
