@@ -1,6 +1,8 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: black;
+  color:aliceblue;
 }
 #map {
   position: absolute;
@@ -9,7 +11,7 @@ body {
   width: 100%;
 }
 .marker {
-  background-image: url('https://docs.mapbox.com/help/demos/custom-markers-gl-js/mapbox-icon.png');
+  background-image: url("https://docs.mapbox.com/help/demos/custom-markers-gl-js/mapbox-icon.png");
   background-size: cover;
   width: 50px;
   height: 50px;
@@ -21,5 +23,61 @@ body {
 }
 .mapboxgl-popup-content {
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
+}
+
+.Navbar {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+.NavbarDiv {
+  display: flex;
+  list-style: none;
+}
+.NavbarLink {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.MuseumLink {
+  font-weight: bold;
+  font-size: 120%;
+}
+.AddingLink{
+  text-decoration: none;
+}
+
+.AddingExhibition{
+  display: flex;
+  justify-content: center;
+color: white;
+}
+
+.Container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.BottomLeft {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+}
+.ImgCentered{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.Form {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+.Map {
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }

@@ -35,9 +35,9 @@ function Exhibition() {
           </Link>
         )}
         <Link to={`/exhibitions/${data?._id}/booking`}>Book your ticket</Link>
+        <Link to={`/exhibitions/${data?._id}/update`}>Update informations</Link>
         <button onClick={handleDelete}>Delete</button>
       </Suspense>
-      <Link to={`/exhibitions/${data?._id}/update`}>Update informations</Link>
     </div>
   );
 }

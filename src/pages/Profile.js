@@ -11,10 +11,9 @@ function Home() {
   return (
     <div>
       <h2>Profile</h2>
-      <p>Mail: {user?.email}</p>
+      <p>Email: {user?.email}</p>
       <h3>My bookings</h3>
       <Bookings/>
-      <h3>Saved Exhibitions</h3>
       <button className="NavbarButton" onClick={handleLogout}>Logout</button>
     </div>
   );

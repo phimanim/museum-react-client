@@ -12,14 +12,41 @@ function Bookings() {
       <div>
         {data?.map((booking) => {
           return (
-            <div key={booking._id}>
-              {booking.exhibition?.name && (
-                <p>{booking.exhibition?.name}</p>
+            <div className="Container" key={booking._id}>
+              {booking.exhibition?.imageUrl && (
+                <a href={`/profile/${booking._id}`}>
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "250px",
+                      objectFit: "cover",
+                      filter: "brightness(50%)",
+                    }}
+                    src={booking.exhibition?.imageUrl}
+                  />
+                </a>
               )}
-              {booking.exhibition?.imageUrl && <img src={booking.exhibition?.imageUrl} />}
-              {booking.date && <p>Date: {booking.date}</p>}
-              {booking.hour && <p>Time: {booking.hour}</p>}
-              <Link to={`/profile/${booking._id}`}>Details</Link>
+              <div className="ImgCentered">
+                {booking.exhibition?.name && (
+                  <a
+                    style={{
+                      textDecoration: "none",
+                    }}
+                    href={`/profile/${booking._id}`}
+                  >
+                    <h1
+                      style={{
+                        color: "white",
+                        fontSize: "200%",
+                      }}
+                    >
+                      {booking.exhibition?.name}
+                    </h1>
+                  </a>
+                )}
+                {booking.date && <p>Date: {booking.date}</p>}
+                {booking.hour && <p>Time: {booking.hour}</p>}
+              </div>
               <hr />
             </div>
           );

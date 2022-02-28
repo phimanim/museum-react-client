@@ -56,7 +56,7 @@ console.log("museums:", data)
   return (
     <div>
       <h1>Add a new exhibition</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="Form" onSubmit={handleSubmit}>
         <label htmlFor="name">Exhibition</label>
         <input
           name="name"

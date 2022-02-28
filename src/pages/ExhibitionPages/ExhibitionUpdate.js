@@ -7,8 +7,8 @@ import { useFetch } from "../../hooks/useFetch";
 
 function ExhibitionUpdate() {
   const { exhibitionId } = useParams();
-//   const { museums, museumError, museumLoading } = useFetch(getMuseums);
-//   console.log("museums:", museums);
+  //   const { museums, museumError, museumLoading } = useFetch(getMuseums);
+  //   console.log("museums:", museums);
 
   const [state, setState] = React.useState({
     name: "",
@@ -17,7 +17,7 @@ function ExhibitionUpdate() {
     curator: "",
     begginingDate: "",
     endDate: "",
-    museum: ""
+    museum: "",
   });
   const history = useHistory();
   const { data, loading, error } = useFetch(getMuseums);
@@ -32,13 +32,10 @@ function ExhibitionUpdate() {
     getExhibitionData();
   }, []);
 
-
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setState({ ...state, [name]: value });
   };
-
-  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -49,17 +46,19 @@ function ExhibitionUpdate() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="Form" onSubmit={handleSubmit}>
         <label htmlFor="name">exhibition</label>
         <input name="name" onChange={handleChange} value={state.name} />
 
         <label htmlFor="description">description</label>
-        <input
+
+        <textarea
           name="description"
           onChange={handleChange}
+          rows="4"
+          cols="50"
           value={state.description}
         />
-
         <label htmlFor="artist">artist</label>
         <input name="artist" onChange={handleChange} value={state.artist} />
         <label htmlFor="curator">curator</label>
@@ -89,15 +88,14 @@ function ExhibitionUpdate() {
           placeholder="Pick a museum"
           value={state.museum}
         >
-           <option value="">--Please choose an option--</option>
+          <option value="">--Please choose an option--</option>
           <Suspense error={error} loading={loading} noData={!data && !loading}>
-          {data?.map((e) => (
-            <option value={e?._id} key={e?._id}>
-              {e.name}
-            </option>
-          ))}
+            {data?.map((e) => (
+              <option value={e?._id} key={e?._id}>
+                {e.name}
+              </option>
+            ))}
           </Suspense>
-          
         </select>
         <button type="submit">Update exhibition</button>
       </form>

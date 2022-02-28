@@ -8,27 +8,42 @@ function Navbar() {
   if (user) {
     return (
       <div className="Navbar">
-        <Link className="NavbarLink" to="/">Home</Link>
-        <Link className="NavbarLink" to="/exhibitions">
-          Exhibitions
-        </Link>
-        <Link className="NavbarLink" to="/museums">
-         Museums
-        </Link>
-        <Link className="NavbarLink" to="/profile">
-         Profile
-        </Link>
-        <Link className="NavbarLink" to="/map">
-         Museum Map
-        </Link>
-       
+        <ul className="NavbarDiv">
+          <li>
+            <Link className="NavbarLink" to="/">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link className="NavbarLink" to="/exhibitions">
+              Exhibitions
+            </Link>
+          </li>
+          <li>
+            <Link className="NavbarLink MuseumLink" to="/museums">
+              Museums
+            </Link>
+          </li>
+          <li>
+            <Link className="NavbarLink" to="/profile">
+              Profile
+            </Link>
+          </li>
+          <li>
+            <Link className="NavbarLink" to="/map">
+              Museums Map
+            </Link>
+          </li>
+        </ul>
       </div>
     );
   }
 
   return (
     <div className="Navbar">
-      <Link className="NavbarLink" to="/login">Login</Link>
+      <Link className="NavbarLink" to="/login">
+        Login
+      </Link>
       <Link className="NavbarLink" style={{ marginLeft: "15px" }} to="/signup">
         Signup
       </Link>

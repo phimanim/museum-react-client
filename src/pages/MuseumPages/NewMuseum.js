@@ -45,7 +45,8 @@ function NewMuseum() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
+      <form className="Form" onSubmit={handleSubmit}>
       <label htmlFor="name">Museum</label>
       <input name="name" required onChange={handleChange} value={state.name} />
       <label htmlFor="address">address</label>
@@ -72,6 +73,8 @@ function NewMuseum() {
       <input type="file" name="imageUrl" onChange={handleFileChange} />
       <button type="submit">Create Museum</button>
     </form>
+    </div>
+    
   );
 }
 

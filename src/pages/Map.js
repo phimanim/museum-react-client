@@ -16,7 +16,8 @@ function MapView() {
   console.log(selectedMuseum);
 
   return (
-    <Map
+    <div className="Map">
+      <Map 
       initialViewState={{
         latitude: 48.856614,
         longitude: 2.3522219,
@@ -40,7 +41,7 @@ function MapView() {
                 padding: "0",
                 width: "20px",
                 height: "20px",
-                backgroundColor: "#0066ff",
+                backgroundColor: "#000000",
               }}
               className="marker-btn"
               onClick={(e) => {
@@ -52,6 +53,10 @@ function MapView() {
         ))}
         {selectedMuseum ? (
           <Popup
+          style={{
+            color: "#000000",
+            textDecoration: "none",
+          }}
             latitude={selectedMuseum.latitude}
             longitude={selectedMuseum.longitude}
             onClose={() => {
@@ -61,12 +66,17 @@ function MapView() {
             <div>
               <h2>{selectedMuseum.name}</h2>
               <p>{selectedMuseum.description}</p>
-              <Link to={`/museums/${selectedMuseum._id}`}>Discover Museum</Link>
+              <Link  style={{
+            color: "#000000",
+            textDecoration: "none",
+          }} to={`/museums/${selectedMuseum._id}`}>Discover Museum</Link>
             </div>
           </Popup>
         ) : null}
       </Suspense>
     </Map>
+    </div>
+    
   );
 }
 

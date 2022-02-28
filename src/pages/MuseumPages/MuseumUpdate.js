@@ -1,5 +1,5 @@
 import React from "react";
-import { updateMuseum, getMuseumById } from "../../api";
+import { updateMuseum, getMuseumById, uploadImage } from "../../api";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
@@ -12,6 +12,8 @@ function MuseumUpdate() {
     longitude: "",
     phone: "",
   });
+  const [file, setFile] = React.useState();
+
   const history = useHistory();
 
   async function getMuseumData() {
@@ -29,16 +31,29 @@ function MuseumUpdate() {
     setState({ ...state, [name]: value });
   };
 
+  const handleFileChange = ({ target }) => {
+    const [file] = target.files;
+    setFile(file);
+  };
+
   const handleSubmit = async (event) => {
+    let imageUrl;
     event.preventDefault();
-    const { data } = await updateMuseum(museumId, state);
+    if (file) {
+      const formData = new FormData();
+      formData.append("imageUrl", file);
+      const { data } = await uploadImage(formData);
+      imageUrl = data.imageUrl;
+    }
+
+    const { data } = await updateMuseum(museumId, state, imageUrl);
     console.log("data", data);
     history.push("/museums");
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="Form" onSubmit={handleSubmit}>
         <label htmlFor="name">Museum</label>
         <input name="name" onChange={handleChange} value={state.name} />
 
@@ -46,11 +61,7 @@ function MuseumUpdate() {
         <input name="address" onChange={handleChange} value={state.address} />
 
         <label htmlFor="latitude">Latitude</label>
-        <input
-          name="latitude"
-          onChange={handleChange}
-          value={state.latitude}
-        />
+        <input name="latitude" onChange={handleChange} value={state.latitude} />
         <label htmlFor="longitude">Longitude</label>
         <input
           name="longitude"
@@ -59,6 +70,7 @@ function MuseumUpdate() {
         />
         <label htmlFor="phone">Phone</label>
         <input name="phone" onChange={handleChange} value={state.phone} />
+        <input type="file" name="imageUrl" onChange={handleFileChange} />
 
         <button type="submit">Update Museum</button>
       </form>
