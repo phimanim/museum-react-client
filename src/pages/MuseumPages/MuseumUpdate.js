@@ -46,7 +46,7 @@ function MuseumUpdate() {
       imageUrl = data.imageUrl;
     }
 
-    const { data } = await updateMuseum(museumId, state, imageUrl);
+    const { data } = await updateMuseum(museumId, {state, imageUrl});
     console.log("data", data);
     history.push("/museums");
   };
