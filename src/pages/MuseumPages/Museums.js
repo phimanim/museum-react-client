@@ -7,13 +7,32 @@ import { Link } from "react-router-dom";
 function Museums() {
   const { data, loading, error } = useFetch(getMuseums);
 
+  //search bar
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const handleSearchChange = ({ target }) => {
+    setSearchTerm(target.value);
+  };
+  const bySearchTerm = (museum) =>
+    museum.name.toLowerCase().includes(searchTerm);
   return (
     <div>
       <Suspense noData={!data && !loading} error={error} loading={loading}>
         <div>
+
+        <div>
+            <input
+              type="text"
+              name="search"
+              id="search"
+              className="input"
+              placeholder="search"
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+          </div>
           {/* <h1>Museums</h1> */}
-          {data?.map((museum) => {
-            return (
+          {data?.filter(bySearchTerm).map((museum) => (
+            
               <div className="Container" key={museum._id}>
                 <a href={`/museums/${museum._id}`}>
                   <img
@@ -34,8 +53,7 @@ function Museums() {
                   }} to={`/museums/${museum._id}`}>{museum.name}</Link>
                 </div>
               </div>
-            );
-          })}
+          ))}
           <div className="AddingExhibition">
             <Link className="NavbarLink" to="/new-museum">
             Add a new museum
