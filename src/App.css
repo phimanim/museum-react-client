@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: black;
-  color:aliceblue;
+  color: aliceblue;
 }
 #map {
   position: absolute;
@@ -39,20 +39,21 @@ body {
   margin: 0 10px;
   color: white;
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .MuseumLink {
   font-weight: bold;
-  font-size: 120%;
 }
-.AddingLink{
+.AddingLink {
   text-decoration: none;
 }
 
-.AddingExhibition{
+.AddingExhibition {
   display: flex;
   justify-content: center;
-color: white;
+  color: white;
 }
 
 .Container {
@@ -65,7 +66,7 @@ color: white;
   bottom: 30px;
   left: 30px;
 }
-.ImgCentered{
+.ImgCentered {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -80,4 +81,21 @@ color: white;
   display: grid;
   align-items: center;
   justify-items: center;
+}
+
+.MuseumCard{
+  display: flex;
+  flex-direction: column;
+}
+
+.ExhibitionCard{
+  display: flex;
+  flex-direction: column;
+}
+
+.ButtonContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

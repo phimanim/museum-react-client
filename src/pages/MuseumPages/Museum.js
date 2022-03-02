@@ -35,20 +35,88 @@ function Museum() {
     history.push("/museums");
   };
   return (
-    <div>
+    <div className="MuseumCard">
       <Suspense error={error} loading={loading} noData={!data && !loading}>
-        <h2>{data?.name}</h2>
+        <h2
+          style={{
+            fontSize: "4em",
+            margin: "0",
+          }}
+        >
+          {data?.name}
+        </h2>
         {data?.imageUrl && <img src={data?.imageUrl} />}
         {data?.address && <p>Address: {data?.address}</p>}
         {data?.phone && <p>Phone: 0{data?.phone}</p>}
+
+        <div style={{ height: "50px" }} className="SlidingContainer">
+          <span style={{ fontSize: "50px" }} className="SlideRight">
+            Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;
+          </span>
+          <span style={{ fontSize: "50px" }} className="SlideRight">
+            Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;
+          </span>
+        </div>
+
         {exhibition?.map((e) => (
-          <p value={e._id} key={e._id}>
-            <Link to={`/exhibitions/${e?._id}`}>{e.name}</Link>
-            <img src={e.imageUrl} />
-          </p>
+          <div key={e._id} className="Container">
+            <img
+              style={{
+                width: "100%",
+                height: "250px",
+                objectFit: "cover",
+                filter: "brightness(50%)",
+              }}
+              src={e.imageUrl}
+            />
+            <div className="BottomLeft">
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  fontSize: "200%",
+                }}
+                to={`/exhibitions/${e?._id}`}
+              >
+                {e.name}
+              </Link>
+            </div>
+          </div>
         ))}
-        <Link to={`/museums/${data?._id}/update`}>Update informations</Link>
-        <button onClick={handleDelete}>Delete</button>
+
+
+        <div className="ButtonContainer">
+        <Link
+          style={{
+            color: "white",
+            width: "150px",
+            padding: "15px",
+            margin: "15px",
+            textDecoration: "none",
+            border: "solid white",
+            textTransform:"uppercase",
+            display:"flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          to={`/museums/${data?._id}/update`}
+        >
+          Update Museum
+        </Link>
+        <button style={{
+            color: "white",
+            width: "150px",
+            padding: "15px",
+            margin: "15px",
+            textDecoration: "none",
+            border: "solid white",
+            textTransform:"uppercase",
+            backgroundColor:"black"
+          }}
+          onClick={handleDelete}>Delete</button>
+        </div>
+       
+       
       </Suspense>
     </div>
   );

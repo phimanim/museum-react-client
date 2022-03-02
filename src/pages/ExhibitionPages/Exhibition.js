@@ -1,6 +1,5 @@
 import React from "react";
-import { getExhibitionById } from "../../api";
-import { deleteExhibition } from "../../api";
+import { getExhibitionById, deleteExhibition, createLike } from "../../api";
 import { useFetch } from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import { Suspense } from "../../components";
@@ -16,6 +15,15 @@ function Exhibition() {
   const handleDelete = () => {
     deleteExhibition(exhibitionId);
     history.push("/exhibitions");
+  };
+
+  const [state, setState] = React.useState({
+    exhibition: exhibitionId
+  });
+  const handleLike = async (event) => {
+    event.preventDefault();
+    const { data } = await createLike(state);
+    console.log("liked exhibition:", data);
   };
 
   return (
@@ -36,6 +44,9 @@ function Exhibition() {
         )}
         <Link to={`/exhibitions/${data?._id}/booking`}>Book your ticket</Link>
         <Link to={`/exhibitions/${data?._id}/update`}>Update informations</Link>
+      <form onSubmit={handleLike}>
+      <button type="submit">Save Exhibition</button>
+      </form>
         <button onClick={handleDelete}>Delete</button>
       </Suspense>
     </div>

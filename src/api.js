@@ -71,7 +71,22 @@ export function updateBooking(bookingId, booking) {
 export function deleteBooking(bookingId, booking) {
   return api.delete(`/bookings/${bookingId}`, booking);
 }
-
+// likes
+export function getLikes() {
+  return api.get("/likes");
+}
+export function getLikeById(likeId) {
+  return api.get(`/likes/${likeId}`);
+}
+export function createLike(like) {
+  return api.post("/likes", like);
+}
+export function updateLike(likeId, like) {
+  return api.put(`/likes/${likeId}`, like);
+}
+export function deleteLike(likeId, like) {
+  return api.delete(`/likes/${likeId}`, like);
+}
 //files
 export async function uploadImage(file) {
   return api.post("/image-upload", file);

@@ -16,55 +16,60 @@ function Exhibitions() {
     exhibition.name.toLowerCase().includes(searchTerm);
 
   return (
-    <Suspense noData={!data && !loading} error={error} loading={loading}>
-      <div>
-        <div>
-          <div>
-            <input
-              type="text"
-              name="search"
-              id="search"
-              className="input"
-              placeholder="search"
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
-          </div>
-          {data?.filter(bySearchTerm).map((exhibition) => (
-            <div className="Container" key={exhibition._id}>
-            <a href={`/exhibitions/${exhibition._id}`}>
-              <img
-                style={{
-                  width: "100%",
-                  height: "250px",
-                  objectFit: "cover",
-                  filter: "brightness(50%)",
-                }}
-                src={exhibition.imageUrl}
+    <div>
+      <Suspense noData={!data && !loading} error={error} loading={loading}>
+          <div className="MuseumSearch">
+            <div className="SearchContainer">
+              <input
+                type="text"
+                name="search"
+                id="search"
+                className="SearchInput"
+                placeholder="search"
+                value={searchTerm}
+                onChange={handleSearchChange}
               />
-            </a>
-            <div className="BottomLeft">
-              <h1
-                style={{
-                  textDecoration: "none",
-                  color: "white",
-                  fontSize: "200%",
-                }}
-              >
-                {exhibition.name}
-              </h1>
+              <div className="SearchIcon"></div>
             </div>
           </div>
-          ))}
-        </div>
+          <div>
+            {data?.filter(bySearchTerm).map((exhibition) => (
+              <div className="Container" key={exhibition._id}>
+                <a href={`/exhibitions/${exhibition._id}`}>
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "250px",
+                      objectFit: "cover",
+                      filter: "brightness(50%)",
+                    }}
+                    src={exhibition.imageUrl}
+                  />
+                </a>
+                <div className="BottomLeft">
+                  <h1
+                    style={{
+                      textDecoration: "none",
+                      color: "white",
+                      fontSize: "200%",
+                    }}
+                  >
+                    {exhibition.name}
+                  </h1>
+                </div>
+              </div>
+            ))}
 
-        <div className="AddingExhibition">
-          <Link className="AddingLink" to="/new-exhibition">
-            Add an exhibition
-          </Link>
+          <div className="AddingExhibition">
+            <Link style={{
+                    padding: "15px"
+                  }} className="NavbarLink" to="/new-exhibition">
+              Add an exhibition
+            </Link>
+          </div>
         </div>
-      </div>
-    </Suspense>
+      </Suspense>
+    </div>
   );
 }
 

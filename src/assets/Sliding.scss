@@ -1,0 +1,34 @@
+.SlidingContainer {
+  display: flex;
+  font-family: "Newake";
+  text-transform: lowercase;
+  width: 100%;
+  margin: 12px;
+  overflow: hidden;
+}
+
+.SlideLeft {
+  white-space: nowrap;
+  animation: slidingLeft 15s linear infinite;
+}
+@keyframes slidingLeft {
+  0% {
+    transform: translate(-100%, 0);
+  }
+  100% {
+    transform: translate(0%, 0);
+  }
+}
+
+.SlideRight {
+  white-space: nowrap;
+  animation: slidingRight 19s linear infinite;
+}
+@keyframes slidingRight {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}

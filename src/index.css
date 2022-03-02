@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "Calfine";
+  src: local("Calfine"),
+   url("./assets/fonts/Calfine/Calfine-font.otf") format("opentype");
+  font-weight: bold;
+  }
+
+  @font-face {
+    font-family: "Newake";
+    src: local("Newake"),
+     url("./assets/fonts/Newake/newake-demo-400.otf") format("opentype");
+    font-weight: bold;
+    }
