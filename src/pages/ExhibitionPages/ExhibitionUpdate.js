@@ -45,58 +45,79 @@ function ExhibitionUpdate() {
   };
 
   return (
-    <div>
+    <div style={{display:"flex", alignItems:"center", flexDirection:"column"}}>
+      <h1 >Update {state.name}</h1>
+
       <form className="Form" onSubmit={handleSubmit}>
-        <label htmlFor="name">exhibition</label>
-        <input name="name" onChange={handleChange} value={state.name} />
+        <div>
+          <label htmlFor="name">exhibition</label>
+          <input name="name" onChange={handleChange} value={state.name} />
+        </div>
+        <div>
+          <label htmlFor="museum">Museum</label>
+          <select
+            name="museum"
+            onChange={handleChange}
+            placeholder="Pick a museum"
+            value={state.museum}
+          >
+            <option value="">Please choose an option</option>
+            <Suspense
+              error={error}
+              loading={loading}
+              noData={!data && !loading}
+            >
+              {data?.map((e) => (
+                <option value={e?._id} key={e?._id}>
+                  {e.name}
+                </option>
+              ))}
+            </Suspense>
+          </select>
+        </div>
+        <div className="DescriptionArea">
+          <label htmlFor="description">description</label>
 
-        <label htmlFor="description">description</label>
+          <textarea
+            name="description"
+            onChange={handleChange}
+            rows="4"
+            cols="50"
+            value={state.description}
+          />
+        </div>
+        <div>
+          <label htmlFor="artist">artist</label>
+          <input name="artist" onChange={handleChange} value={state.artist} />
+        </div>
+        <div>
+          <label htmlFor="curator">curator</label>
+          <input name="curator" onChange={handleChange} value={state.curator} />
+        </div>
+        <div>
+          <label htmlFor="begginingDate">Beggining date</label>
+          <input
+            name="begginingDate"
+            type="date"
+            onChange={handleChange}
+            value={state.begginingDate}
+            min="2021-02-15"
+            max="2024-12-31"
+          />
+        </div>
+        <div>
+          <label htmlFor="endDate">End date</label>
+          <input
+            name="endDate"
+            type="date"
+            onChange={handleChange}
+            value={state.endDate}
+            min="2021-02-15"
+            max="2024-12-31"
+          />
+        </div>
+       
 
-        <textarea
-          name="description"
-          onChange={handleChange}
-          rows="4"
-          cols="50"
-          value={state.description}
-        />
-        <label htmlFor="artist">artist</label>
-        <input name="artist" onChange={handleChange} value={state.artist} />
-        <label htmlFor="curator">curator</label>
-        <input name="curator" onChange={handleChange} value={state.curator} />
-        <label htmlFor="begginingDate">Beggining date</label>
-        <input
-          name="begginingDate"
-          type="date"
-          onChange={handleChange}
-          value={state.begginingDate}
-          min="2021-02-15"
-          max="2024-12-31"
-        />
-        <label htmlFor="endDate">End date</label>
-        <input
-          name="endDate"
-          type="date"
-          onChange={handleChange}
-          value={state.endDate}
-          min="2021-02-15"
-          max="2024-12-31"
-        />
-        <label htmlFor="museum">Museum</label>
-        <select
-          name="museum"
-          onChange={handleChange}
-          placeholder="Pick a museum"
-          value={state.museum}
-        >
-          <option value="">--Please choose an option--</option>
-          <Suspense error={error} loading={loading} noData={!data && !loading}>
-            {data?.map((e) => (
-              <option value={e?._id} key={e?._id}>
-                {e.name}
-              </option>
-            ))}
-          </Suspense>
-        </select>
         <button type="submit">Update exhibition</button>
       </form>
     </div>

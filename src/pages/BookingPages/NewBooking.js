@@ -14,10 +14,10 @@ function NewBooking() {
 
   const [state, setState] = React.useState({
     exhibition: exhibitionId,
-    date: ""
+    date: "",
   });
 
-console.log(state)
+  console.log(state);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -32,10 +32,14 @@ console.log(state)
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div
+      style={{ display: "flex", alignItems: "center", flexDirection: "column" }}
+    >
       <h1>Booking</h1>
       <h2>{data?.name}</h2>
-      <label htmlFor="date">Date</label>
+      <form className="Form" onSubmit={handleSubmit}>
+        <div>
+<label htmlFor="date">Date</label>
         <input
           name="date"
           type="datetime-local"
@@ -43,10 +47,13 @@ console.log(state)
           onChange={handleChange}
           value={state.date}
           min={data?.begginingDate}
-        max={data?.endDate}
+          max={data?.endDate}
         />
-      <button type="submit">Create Booking</button>
-    </form>
+        </div>
+        
+        <button style={{width: "200px"}} type="submit">Book</button>
+      </form>
+    </div>
   );
 }
 

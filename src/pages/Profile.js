@@ -5,39 +5,52 @@ import Bookings from "./BookingPages/Bookings";
 import Likes from "./Likes";
 import "../assets/Sliding.scss";
 
-function Home() {
+function Profile() {
   const { handleLogout } = useAuth();
   //const { data} = useFetch(getBookings);
   return (
     <div>
       <div className="ProfileCard">
-        <div style={{ height: "110px" }}className="SlidingContainer">
-          <span style={{ fontSize: "100px" }} className="SlideLeft">
+        <div style={{ height: "50px" }}className="SlidingContainer">
+          <span style={{ fontSize: "50px" }} className="SlideLeft">
             Bookings Bookings Bookings Bookings Bookings&nbsp;
           </span>
-          <span style={{ fontSize: "100px" }} className="SlideLeft">
+          <span style={{ fontSize: "50px" }} className="SlideLeft">
             Bookings Bookings Bookings Bookings Bookings&nbsp;
           </span>
         </div>
       </div>
 
       <Bookings />
-      <div style={{ height: "110px" }} className="SlidingContainer">
-        <span style={{ fontSize: "100px" }} className="SlideRight t1">
+      <div style={{ height: "50px" }} className="SlidingContainer">
+        <span style={{ fontSize: "50px" }} className="SlideRight t1">
           likes likes likes likes likes likes likes likes likes likes
           likes&nbsp;
         </span>
-        <span style={{ fontSize: "100px" }} className="SlideRight t2">
+        <span style={{ fontSize: "50px" }} className="SlideRight t2">
           likes likes likes likes likes likes likes likes likes likes
           likes&nbsp;
         </span>
       </div>
       <Likes />
-      <button className="NavbarButton" onClick={handleLogout}>
+      <div className="ButtonContainerRow">
+        <button  style={{
+              color: "white",
+              padding: "15px",
+              margin: "15px",
+              textDecoration: "none",
+              border: "solid white",
+              textTransform: "uppercase",
+              backgroundColor: "black",
+              fontSize: "15px",
+              cursor: "pointer",
+            }} className="NavbarButton" onClick={handleLogout}>
         Logout
       </button>
+      </div>
+      
     </div>
   );
 }
 
-export default Home;
+export default Profile;

@@ -25,7 +25,7 @@ function Exhibitions() {
                 name="search"
                 id="search"
                 className="SearchInput"
-                placeholder="search"
+                placeholder=""
                 value={searchTerm}
                 onChange={handleSearchChange}
               />
@@ -45,8 +45,8 @@ function Exhibitions() {
                     }}
                     src={exhibition.imageUrl}
                   />
-                </a>
-                <div className="BottomLeft">
+                
+                <div className="ImgCentered">
                   <h1
                     style={{
                       textDecoration: "none",
@@ -57,6 +57,7 @@ function Exhibitions() {
                     {exhibition.name}
                   </h1>
                 </div>
+                </a>
               </div>
             ))}
 

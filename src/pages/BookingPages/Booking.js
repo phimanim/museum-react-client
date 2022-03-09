@@ -18,10 +18,14 @@ function Booking() {
   };
 
   return (
-    <div>
-      <Suspense error={error} loading={loading} noData={!data && !loading}>
-        <h2>{data?.exhibition?.name}</h2>
-        <p>{data?.date}</p>
+<div>      <Suspense error={error} loading={loading} noData={!data && !loading}>
+        <h2 style={{
+                fontSize: "4em",
+                margin: "0",
+                overflow: "auto",
+              }}>{data?.exhibition?.name}</h2>
+        <p>Booked for {data?.date.split("T")[0].replaceAll('-', '/')}</p>
+        <p>Booking time: {data?.date.split("T")[1].replaceAll('-', '/').split(':')[1]}:{data?.date.split("T")[1].replaceAll('-', '/').split(':')[0]}</p>
         <img
           style={{
             width: "100%",
@@ -50,8 +54,19 @@ function Booking() {
             </p>
           )}
         </div>
-
-        <button onClick={handleDelete}>Delete</button>
+        <div className="ButtonContainerRow"><button style={{
+              color: "white",
+              padding: "15px",
+              margin: "15px",
+              textDecoration: "none",
+              border: "solid white",
+              textTransform: "uppercase",
+              backgroundColor: "black",
+              fontSize: "15px",
+              cursor: "pointer",
+            }} onClick={handleDelete}>Cancel booking</button>
+</div>
+        
       </Suspense>
     </div>
   );

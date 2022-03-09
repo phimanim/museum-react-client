@@ -13,26 +13,35 @@ function AuthForm({ onSubmit, submitMessage }) {
     onSubmit(state);
   };
   return (
-    <form className="Form"onSubmit={handleSubmit}>
-      <label htmlFor="email">Email</label>
-      <input
-        required
-        name="email"
-        type="email"
-        value={state.email}
-        onChange={handleChange}
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        required
-        name="password"
-        type="password"
-        autoComplete="on"
-        value={state.password}
-        onChange={handleChange}
-      />
-      <button type="submit">{submitMessage}</button>
-    </form>
+    <div className="AuthForm"    >
+      <form
+        onSubmit={handleSubmit}
+      >
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            required
+            name="email"
+            type="email"
+            value={state.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            required
+            name="password"
+            type="password"
+            autoComplete="on"
+            value={state.password}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button type="submit">{submitMessage}</button>
+      </form>
+    </div>
   );
 }
 

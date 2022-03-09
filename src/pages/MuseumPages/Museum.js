@@ -4,6 +4,7 @@ import { useFetch } from "../../hooks/useFetch";
 import { useParams, Link } from "react-router-dom";
 import { Suspense } from "../../components";
 import { useHistory } from "react-router-dom";
+import { AuthProvider } from "../../components/AuthContext";
 
 function Museum() {
   const { museumId } = useParams();
@@ -35,88 +36,122 @@ function Museum() {
     history.push("/museums");
   };
   return (
-    <div className="MuseumCard">
+    <div className="Museum">
       <Suspense error={error} loading={loading} noData={!data && !loading}>
-        <h2
-          style={{
-            fontSize: "4em",
-            margin: "0",
-          }}
-        >
-          {data?.name}
-        </h2>
-        {data?.imageUrl && <img src={data?.imageUrl} />}
-        {data?.address && <p>Address: {data?.address}</p>}
-        {data?.phone && <p>Phone: 0{data?.phone}</p>}
-
-        <div style={{ height: "50px" }} className="SlidingContainer">
-          <span style={{ fontSize: "50px" }} className="SlideRight">
-            Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;
-          </span>
-          <span style={{ fontSize: "50px" }} className="SlideRight">
-            Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;
-          </span>
-        </div>
-
-        {exhibition?.map((e) => (
-          <div key={e._id} className="Container">
-            <img
+        <div className="MuseumCard">
+          <div className="MuseumCardOne">
+          <h2
               style={{
-                width: "100%",
-                height: "250px",
-                objectFit: "cover",
-                filter: "brightness(50%)",
+                fontSize: "4em",
+                margin: "0",
+                overflow: "auto",
               }}
-              src={e.imageUrl}
-            />
-            <div className="BottomLeft">
-              <Link
+            >
+              {data?.name}
+            </h2>
+            {data?.address && (
+              <p
                 style={{
-                  textDecoration: "none",
-                  color: "white",
-                  fontSize: "200%",
+                  fontSize: "1.3em",
+                  margin: "0",
                 }}
-                to={`/exhibitions/${e?._id}`}
               >
-                {e.name}
-              </Link>
+                {data?.address}
+              </p>
+            )}
+            {data?.imageUrl && (
+              <img
+                style={{
+                  margin: "10px 0",
+                  width: "100%",
+                  height: "250px",
+                  objectFit: "cover",
+                  filter: "brightness(50%)",
+                }}
+                src={data?.imageUrl}
+              />
+            )}
+            
+            
+          </div>
+        </div>
+<div style={{ height: "50px" }} className="SlidingContainer">
+              <span style={{ fontSize: "50px" }} className="SlideRight">
+                Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;
+              </span>
+              <span style={{ fontSize: "50px" }} className="SlideRight">
+                Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;Exhibitions&nbsp;
+              </span>
+            </div>
+        {exhibition?.map((e) => (
+          <div>
+            
+            <div key={e._id} className="Container">
+            {e?.imageUrl && ( <a href={`/exhibitions/${e?._id}`}>
+              <img
+                style={{
+                  width: "100%",
+                  height: "250px",
+                  objectFit: "cover",
+                  filter: "brightness(50%)",
+                }}
+                src={e.imageUrl}
+              /></a>)}
+              <div className="BottomLeft">
+                <Link
+                  style={{
+                    textDecoration: "none",
+                    color: "white",
+                    fontSize: "200%",
+                  }}
+                  to={`/exhibitions/${e?._id}`}
+                >
+                  {e.name}
+                </Link>
+              </div>
             </div>
           </div>
         ))}
 
-
-        <div className="ButtonContainer">
-        <Link
-          style={{
-            color: "white",
-            width: "150px",
-            padding: "15px",
-            margin: "15px",
-            textDecoration: "none",
-            border: "solid white",
-            textTransform:"uppercase",
-            display:"flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          to={`/museums/${data?._id}/update`}
-        >
-          Update Museum
-        </Link>
-        <button style={{
-            color: "white",
-            width: "150px",
-            padding: "15px",
-            margin: "15px",
-            textDecoration: "none",
-            border: "solid white",
-            textTransform:"uppercase",
-            backgroundColor:"black"
-          }}
-          onClick={handleDelete}>Delete</button>
+        <div className="MuseumCardTwo">
+          <div className="ButtonContainer">
+            <Link
+              style={{
+                color: "white",
+                width: "150px",
+                padding: "7px",
+                margin: "15px",
+                backgroundColor: "black",
+                textDecoration: "none",
+                border: "solid white",
+                textTransform: "uppercase",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "15px",
+              }}
+              to={`/museums/${data?._id}/update`}
+            >
+              Update Museum
+            </Link>
+            <button
+              style={{
+                color: "white",
+                width: "150px",
+                padding: "7px",
+                margin: "15px",
+                textDecoration: "none",
+                border: "solid white",
+                textTransform: "uppercase",
+                backgroundColor: "black",
+                fontSize: "15px",
+              }}
+              onClick={handleDelete}
+            >
+              Delete
+            </button>
+          </div>
         </div>
-       
-       
       </Suspense>
     </div>
   );

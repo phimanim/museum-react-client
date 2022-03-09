@@ -10,11 +10,6 @@ function Navbar() {
       <div className="Navbar">
         <ul className="NavbarDiv">
           <li>
-            <Link className="NavbarLink" to="/">
-              Home
-            </Link>
-          </li>
-          <li>
             <Link className="NavbarLink" to="/exhibitions">
               Exhibitions
             </Link>
@@ -25,13 +20,13 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link className="NavbarLink" to="/profile">
-              Profile
+            <Link className="NavbarLink" to="/map">
+              Map
             </Link>
           </li>
           <li>
-            <Link className="NavbarLink" to="/map">
-              Museums Map
+            <Link className="NavbarLink" to="/profile">
+              Profile
             </Link>
           </li>
         </ul>
@@ -41,12 +36,22 @@ function Navbar() {
 
   return (
     <div className="Navbar">
-      <Link className="NavbarLink" to="/login">
-        Login
-      </Link>
-      <Link className="NavbarLink" style={{ marginLeft: "15px" }} to="/signup">
-        Signup
-      </Link>
+      <ul className="NavbarDiv">
+        <li>
+          <Link className="NavbarLink" to="/login">
+            Login
+          </Link>
+        </li>
+        <li>
+          <Link
+            className="NavbarLink"
+            style={{ marginLeft: "15px" }}
+            to="/signup"
+          >
+            Signup
+          </Link>
+        </li>
+      </ul>
     </div>
   );
 }

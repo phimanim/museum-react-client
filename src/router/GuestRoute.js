@@ -6,7 +6,7 @@ function GuestRoute({ children, ...restProps }) {
   const { user } = useAuth();
 
   if (user) {
-    return <Redirect to="/" />;
+    return <Redirect to="/museums" />;
   }
 
   return <Route {...restProps}>{children}</Route>;

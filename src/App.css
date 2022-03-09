@@ -1,8 +1,14 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-color: black;
-  color: aliceblue;
+  background-color: rgb(246, 246, 237);
+  color: black;
 }
 #map {
   position: absolute;
@@ -27,17 +33,19 @@ body {
 }
 
 .Navbar {
-  color: white;
+  color: black;
   display: flex;
   justify-content: center;
+  height: 4em;
 }
 .NavbarDiv {
   display: flex;
   list-style: none;
+  padding: 0;
 }
 .NavbarLink {
   margin: 0 10px;
-  color: white;
+  color: black;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -58,7 +66,7 @@ body {
 
 .Container {
   position: relative;
-  text-align: center;
+  text-align: left;
   color: white;
 }
 .BottomLeft {
@@ -72,20 +80,11 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.Form {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-}
+
 .Map {
   display: grid;
   align-items: center;
   justify-items: center;
-}
-
-.MuseumCard{
-  display: flex;
-  flex-direction: column;
 }
 
 .ExhibitionCard{
@@ -95,7 +94,158 @@ body {
 
 .ButtonContainer{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.ButtonContainerRow{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 1000px) {
+
+  .MuseumCard{
+    display: flex;
+flex-direction: column;}
+
+.MuseumCardOne {
+  width: 100%;
+}
+.ButtonContainerRow{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+
+}
+
+form input,
+form textarea,
+form select {
+    color: white;
+    padding: 15px;
+    margin: 15px;
+    text-decoration: none;
+    border: solid white;
+    background-color: black;
+    font-size: 15px;
+    cursor: pointer;
+   
+}
+
+form input,
+form select{
+  width:320px;
+}
+textarea:focus, input:focus{
+  outline: none;
+}
+form label {
+  text-transform: capitalize;
+  margin-left:15px;
+}
+
+.Form button {
+    color: black;
+    padding: 10px;
+    margin: 15px;
+    text-decoration: none;
+    border: solid black;
+    border-radius: 5px;
+    text-transform: uppercase;
+    background-color: #f8f4e5;
+    font-size: 15px;
+    cursor: pointer;
+    grid-column: 1 / 3;
+    width: 50%
+}
+.Form button:hover {
+  color: white;
+  background-color: black;
+
+}
+
+form .DescriptionArea{
+  grid-column: 1 / 3;
+width: 100%;
+}
+form .DescriptionArea textarea{
+  height:200px;
+  white-space: pre-wrap;
+
+}
+
+.Form {
+  display: grid;
+  grid-gap: 20px;
+  align-items: center;
+  justify-items: center;
+  padding:30px;
+border: 3px black solid;
+}
+
+form div {
+  display: grid;
+}
+
+@media only screen and (max-width: 750px) {
+.Form {
+display: flex;
+flex-direction: column;
+border: none;
+}
+
+form .DescriptionArea textarea{
+width: 320px;
+height: 250px;
+}
+}
+
+.AuthForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.AuthForm form{
+  background-color: #f6f4eb;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  border: 2px solid black;
+
+  box-shadow: 15px 15px 1px black, 15px 15px 1px 2px black;
+  width: 400px;
+  padding: 50px;
+}
+
+.AuthForm input{
+    color: black;
+    padding: 15px;
+    margin: 15px;
+    text-decoration: none;
+    border: solid 3px black;
+    background-color: #f6f4eb;
+    font-size: 15px;
+    cursor: pointer;
+   
+}
+
+.AuthForm button {
+  color: white;
+  padding: 10px;
+  margin: 15px;
+  text-decoration: none;
+  border: solid white;
+  text-transform: uppercase;
+  background-color: black;
+  font-size: 15px;
+  cursor: pointer;
+  width: 50%;  
 }

@@ -2,7 +2,6 @@ import React from "react";
 import { getBookings } from "../../api";
 import { useFetch } from "../../hooks/useFetch";
 import { Suspense } from "../../components";
-import { Link } from "react-router-dom";
 
 function Bookings() {
   const { data, loading, error } = useFetch(getBookings);
@@ -27,27 +26,62 @@ function Bookings() {
                 </a>
               )}
               <div className="ImgCentered">
-                {booking.exhibition?.name && (
-                  <a
-                    style={{
-                      textDecoration: "none",
-                    }}
-                    href={`/profile/${booking._id}`}
-                  >
-                    <h1
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  {booking.exhibition?.name && (
+                    <a
                       style={{
-                        color: "white",
-                        fontSize: "200%",
+                        textDecoration: "none",
+                      }}
+                      href={`/profile/${booking._id}`}
+                    >
+                      <h1
+                        style={{
+                          color: "white",
+                          fontSize: "200%",
+                        }}
+                      >
+                        {booking.exhibition?.name}
+                      </h1>
+                    </a>
+                  )}
+                  {booking.date && (
+                    <p
+                      style={{
+                        margin: "5px",
                       }}
                     >
-                      {booking.exhibition?.name}
-                    </h1>
-                  </a>
-                )}
-                {booking.date && <p>Date: {booking.date}</p>}
-                {booking.hour && <p>Time: {booking.hour}</p>}
+                      {booking.date.split("T")[0].replaceAll("-", "/")}
+                    </p>
+                  )}
+                  {booking.date && (
+                    <p
+                      style={{
+                        margin: "5px",
+                      }}
+                    >
+                      {
+                        booking.date
+                          .split("T")[1]
+                          .replaceAll("-", "/")
+                          .split(":")[1]
+                      }
+                      :
+                      {
+                        booking.date
+                          .split("T")[1]
+                          .replaceAll("-", "/")
+                          .split(":")[0]
+                      }
+                    </p>
+                  )}
+                </div>
               </div>
-              <hr />
             </div>
           );
         })}

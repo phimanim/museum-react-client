@@ -46,31 +46,51 @@ function MuseumUpdate() {
       imageUrl = data.imageUrl;
     }
 
-    const { data } = await updateMuseum(museumId, {state, imageUrl});
+    const { data } = await updateMuseum(museumId, { state, imageUrl });
     console.log("data", data);
     history.push("/museums");
   };
 
   return (
-    <div>
+    <div style={{display:"flex", alignItems:"center", flexDirection:"column"}}>
+
+      <h1 >Update {state.name}</h1>
       <form className="Form" onSubmit={handleSubmit}>
-        <label htmlFor="name">Museum</label>
-        <input name="name" onChange={handleChange} value={state.name} />
+        <div>
+          <label htmlFor="name">Museum</label>
+          <input name="name" onChange={handleChange} value={state.name} />
+        </div>
+        <div>
+          <label htmlFor="address">address</label>
+          <input name="address" onChange={handleChange} value={state.address} />
+        </div>
+        <div>
+          {" "}
+          <label htmlFor="latitude">Latitude</label>
+          <input
+            name="latitude"
+            onChange={handleChange}
+            value={state.latitude}
+          />
+        </div>
+        <div>
+          <label htmlFor="longitude">Longitude</label>
+          <input
+            name="longitude"
+            onChange={handleChange}
+            value={state.longitude}
+          />
+        </div>
+        <div>
+          {" "}
+          <label htmlFor="phone">Phone</label>
+          <input name="phone" onChange={handleChange} value={state.phone} />
+        </div>
+        <div>
+        <label htmlFor="imageUrl">Image</label>
 
-        <label htmlFor="address">address</label>
-        <input name="address" onChange={handleChange} value={state.address} />
-
-        <label htmlFor="latitude">Latitude</label>
-        <input name="latitude" onChange={handleChange} value={state.latitude} />
-        <label htmlFor="longitude">Longitude</label>
-        <input
-          name="longitude"
-          onChange={handleChange}
-          value={state.longitude}
-        />
-        <label htmlFor="phone">Phone</label>
-        <input name="phone" onChange={handleChange} value={state.phone} />
-        <input type="file" name="imageUrl" onChange={handleFileChange} />
+          <input type="file" name="imageUrl" onChange={handleFileChange} />
+        </div>
 
         <button type="submit">Update Museum</button>
       </form>

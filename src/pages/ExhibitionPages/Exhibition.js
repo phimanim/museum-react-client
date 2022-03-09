@@ -18,36 +18,174 @@ function Exhibition() {
   };
 
   const [state, setState] = React.useState({
-    exhibition: exhibitionId
+    exhibition: exhibitionId,
   });
   const handleLike = async (event) => {
     event.preventDefault();
     const { data } = await createLike(state);
     console.log("liked exhibition:", data);
+    history.push("/profile");
+
   };
 
   return (
     <div>
       <Suspense error={error} loading={loading} noData={!data && !loading}>
-        <h2>{data?.name}</h2>
+        <div>
+          <h2
+            style={{
+              fontSize: "4em",
+              overflow: "auto",
+              margin: "10px"
+            }}
+          >
+            {data?.name}{" "}
+          </h2>
+          <p
+              style={{
+                fontSize: "20px",
+                margin: "10px"
+              }}
+            >
+              {data?.begginingDate.split("T")[0].replaceAll('-', '/')} -{" "}
+              {data?.endDate.split("T")[0].replaceAll('-', '/')}
+            </p>
+        </div>
 
-        {data?.imageUrl && <img src={data?.imageUrl} />}
-        {data?.description && <p>{data?.description}</p>}
-        {data?.artist && <p>Artist: {data?.artist}</p>}
-        {data?.curator && <p>Curator: {data?.curator}</p>}
-        {data?.begginingDate && <p>Beggining Date: {data?.begginingDate}</p>}
-        {data?.endDate && <p>End Date: {data?.endDate}</p>}
-        {data?.museum && (
-          <Link to={`/museums/${data?.museum._id}`}>
-            Museum: {data?.museum.name}
-          </Link>
+        {data?.imageUrl && (
+          <img
+            style={{
+              width: "100%",
+              height: "250px",
+              objectFit: "cover",
+              filter: "brightness(50%)",
+            }}
+            src={data?.imageUrl}
+          />
         )}
-        <Link to={`/exhibitions/${data?._id}/booking`}>Book your ticket</Link>
-        <Link to={`/exhibitions/${data?._id}/update`}>Update informations</Link>
-      <form onSubmit={handleLike}>
-      <button type="submit">Save Exhibition</button>
-      </form>
-        <button onClick={handleDelete}>Delete</button>
+        {data?.description && (
+          <p
+            style={{
+              margin: "40px 40px 0",
+              overflow: "auto",
+            }}
+          >
+            {data?.description}
+          </p>
+        )}
+        <div
+          style={{
+            margin: " 0 40px",
+            overflow: "auto",
+          }}
+        >
+          {data?.artist && <p>Artist: {data?.artist}</p>}
+          {data?.curator && <p>Curator: {data?.curator}</p>}
+        </div>
+
+        {data?.museum && (
+          <div key={data?.museum?._id} className="Container">
+            <a href={`/museums/${data?.museum?._id}`}>
+              <img
+                style={{
+                  width: "100%",
+                  height: "250px",
+                  objectFit: "cover",
+                  filter: "brightness(50%)",
+                }}
+                src={data?.museum?.imageUrl}
+              />
+            </a>
+            <div className="BottomLeft">
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  fontSize: "200%",
+                }}
+                to={`/museums/${data?.museum._id}`}
+              >
+                {data?.museum?.name}
+              </Link>
+            </div>
+          </div>
+        )}
+        <div className="ButtonContainerRow">
+          <Link
+            style={{
+              color: "white",
+              padding: "15px",
+              margin: "15px",
+              backgroundColor:"black",
+              textDecoration: "none",
+              border: "solid white",
+              textTransform: "uppercase",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "15px",
+            }}
+            to={`/exhibitions/${data?._id}/booking`}
+          >
+            Book your ticket
+          </Link>
+          <form onSubmit={handleLike}>
+            <button
+              style={{
+                color: "white",
+                padding: "15px",
+                margin: "15px",
+                textDecoration: "none",
+                border: "solid white",
+                textTransform: "uppercase",
+                backgroundColor: "black",
+                fontSize: "15px",
+                cursor: "pointer",
+                              backgroundColor:"black",
+
+              }}
+              type="submit"
+            >
+              Save Exhibition
+            </button>
+          </form>
+          <Link
+            style={{
+              color: "white",
+              padding: "15px",
+              margin: "15px",
+              textDecoration: "none",
+              border: "solid white",
+              textTransform: "uppercase",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "15px",
+              backgroundColor:"black",
+
+            }}
+            to={`/exhibitions/${data?._id}/update`}
+          >
+            Update informations
+          </Link>
+
+          <button
+            style={{
+              color: "white",
+              padding: "15px",
+              margin: "15px",
+              textDecoration: "none",
+              border: "solid white",
+              textTransform: "uppercase",
+              backgroundColor: "black",
+              fontSize: "15px",
+              cursor: "pointer",
+            }}
+            onClick={handleDelete}
+          >
+            Delete
+          </button>
+        </div>
       </Suspense>
     </div>
   );
