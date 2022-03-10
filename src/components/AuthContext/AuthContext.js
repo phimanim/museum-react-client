@@ -57,6 +57,7 @@ function AuthProvider({ children }) {
   const handleIsLoggedIn = async () => {
     try {
         const { data } = await isLoggedIn();
+        console.log("data:", data)
         setAuth({ user: data });
         saveSessionUser(data);
     } catch (err) {
