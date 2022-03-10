@@ -47,8 +47,8 @@ function Exhibition() {
                 margin: "10px"
               }}
             >
-              {data?.begginingDate.split("T")[0].replaceAll('-', '/')} -{" "}
-              {data?.endDate.split("T")[0].replaceAll('-', '/')}
+              {data?.begginingDate?.split("T")[0].replaceAll('-', '/')} -{" "}
+              {data?.endDate?.split("T")[0].replaceAll('-', '/')}
             </p>
         </div>
 
