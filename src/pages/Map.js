@@ -5,12 +5,17 @@ import { getMuseums } from "../api";
 import { Suspense } from "../components";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Link } from "react-router-dom";
+import mapboxgl from "mapbox-gl";
 
 function MapView() {
+  // eslint-disable-next-line import/no-webpack-loader-syntax
+  mapboxgl.workerClass =
+    require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
   const { data, loading, error } = useFetch(getMuseums);
   console.log(data);
-  const MAPBOX_TOKEN = "pk.eyJ1IjoicGhpbWFuaW0iLCJhIjoiY2wwM3Q2d3kzMDVrbDNxbndnMGo5cXB1diJ9.657dbTJx6cGzk7A_71jRvA";
-console.log("token:", MAPBOX_TOKEN);
+  const MAPBOX_TOKEN =
+    "pk.eyJ1IjoicGhpbWFuaW0iLCJhIjoiY2wwM3Q2d3kzMDVrbDNxbndnMGo5cXB1diJ9.657dbTJx6cGzk7A_71jRvA";
+  console.log("token:", MAPBOX_TOKEN);
   const [selectedMuseum, setSelectedMuseum] = React.useState(null);
   console.log(selectedMuseum);
 
