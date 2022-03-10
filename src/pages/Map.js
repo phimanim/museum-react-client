@@ -6,11 +6,9 @@ import { Suspense } from "../components";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Link } from "react-router-dom";
 import mapboxgl from "mapbox-gl";
-
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 function MapView() {
-  // eslint-disable-next-line import/no-webpack-loader-syntax
-  mapboxgl.workerClass =
-    require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
   const { data, loading, error } = useFetch(getMuseums);
   console.log(data);
   const MAPBOX_TOKEN =
