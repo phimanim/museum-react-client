@@ -1,5 +1,5 @@
 import React from "react";
-import { updateExhibition, getExhibitionById } from "../../api";
+import { updateExhibition, getExhibitionById, uploadImage } from "../../api";
 import { getMuseums } from "../../api";
 import { useParams, useHistory } from "react-router-dom";
 import { Suspense } from "../../components";
@@ -7,9 +7,7 @@ import { useFetch } from "../../hooks/useFetch";
 
 function ExhibitionUpdate() {
   const { exhibitionId } = useParams();
-  //   const { museums, museumError, museumLoading } = useFetch(getMuseums);
-  //   console.log("museums:", museums);
-
+  const [file, setFile] = React.useState();
   const [state, setState] = React.useState({
     name: "",
     description: "",
@@ -36,10 +34,23 @@ function ExhibitionUpdate() {
     const { name, value } = target;
     setState({ ...state, [name]: value });
   };
+  const handleFileChange = ({ target }) => {
+    const [file] = target.files;
+    setFile(file);
+  };
 
   const handleSubmit = async (event) => {
+    let imageUrl;
     event.preventDefault();
-    const { data } = await updateExhibition(exhibitionId, state);
+    if (file) {
+      const formData = new FormData();
+      formData.append("imageUrl", file);
+      const { data } = await uploadImage(formData);
+      imageUrl = data.imageUrl;
+    }
+
+    const { data } = await updateExhibition(exhibitionId, {...state,
+      imageUrl});
     console.log("data", data);
     history.push("/exhibitions");
   };
@@ -116,7 +127,11 @@ function ExhibitionUpdate() {
             max="2024-12-31"
           />
         </div>
-       
+        <div>
+        <label htmlFor="imageUrl">Image</label>
+
+          <input type="file" name="imageUrl" onChange={handleFileChange} />
+        </div>
 
         <button type="submit">Update exhibition</button>
       </form>
