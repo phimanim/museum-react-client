@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 function MapView() {
   const { data, loading, error } = useFetch(getMuseums);
   console.log(data);
-  const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
+  const MAPBOX_TOKEN = "pk.eyJ1IjoicGhpbWFuaW0iLCJhIjoiY2wwM3Q2d3kzMDVrbDNxbndnMGo5cXB1diJ9.657dbTJx6cGzk7A_71jRvA";
 console.log("token:", MAPBOX_TOKEN);
   const [selectedMuseum, setSelectedMuseum] = React.useState(null);
   console.log(selectedMuseum);
