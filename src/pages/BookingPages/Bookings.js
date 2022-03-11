@@ -10,6 +10,7 @@ function Bookings() {
     <Suspense noData={!data && !loading} error={error} loading={loading}>
       <div>
         {data?.map((booking) => {
+          
           return (
             <div className="Container" key={booking._id}>
               {booking.exhibition?.imageUrl && (

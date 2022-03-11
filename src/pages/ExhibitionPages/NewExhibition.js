@@ -57,7 +57,7 @@ function NewExhibition() {
     >
       <h1>Add a new exhibition</h1>
 
-      <form  onSubmit={handleSubmit}>
+      <form className="Form" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Exhibition</label>
           <input
