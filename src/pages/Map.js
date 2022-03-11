@@ -67,6 +67,15 @@ function MapView() {
               <div>
                 <h2>{selectedMuseum.name}</h2>
                 <p>{selectedMuseum.description}</p>
+                {selectedMuseum?.imageUrl && ( <a href={`/museums/${selectedMuseum?._id}`}>
+              <img
+                style={{
+                  width: "100%",
+                  objectFit: "cover",
+                  filter: "brightness(50%)",
+                }}
+                src={selectedMuseum.imageUrl}
+              /></a>)}
                 <Link
                   style={{
                     color: "#000000",
@@ -76,6 +85,7 @@ function MapView() {
                 >
                   Discover Museum
                 </Link>
+                
               </div>
             </Popup>
           ) : null}
